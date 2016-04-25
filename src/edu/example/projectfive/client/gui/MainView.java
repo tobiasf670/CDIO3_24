@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.example.projectfive.client.model.Person;
 import edu.example.projectfive.client.service.PersonServiceClientImpl;
+import edu.example.projectfive.server.PersonServiceImpl;
 
 
 
@@ -32,41 +33,41 @@ public class MainView extends Composite {
 	
 	
 	public MainView(PersonServiceClientImpl clientImpl ){
+		this.clientImpl = clientImpl;
+		HTML label1 = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n  ").toSafeHtml());
+		this.vPanel.add(label1);
+		initWidget(this.vPanel);
 		
-	HTML label1 = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n  ").toSafeHtml());
-	this.vPanel.add(label1);
-	initWidget(this.vPanel);
-	
-	vPanel.setStyleName("style");
-	
-	// create all components used on the page
-	Image img = new Image("/images/login.jpg");
-	Label un = new Label("Username : ");
-	this.uname = new TextBox();
-	Label pword = new Label("Password  : ");
-	this.pass = new PasswordTextBox();
-	HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
-	Button btn1 = new Button("Log ind");
-	this.loginStatus = new Label("LUDER");
-	btn1.addClickHandler(new BtnClickHandler());
-	   
-	
-	//sets the size of the elements
-	uname.setPixelSize(207, 24);
-	this.pass.setPixelSize(207, 24);
-	btn1.setPixelSize(100, 30);
-	
-	// insert the different things on the website
-	vPanel.add(img);
-	vPanel.add(un);
-	vPanel.add(this.uname);
-	vPanel.add(pword);
-	vPanel.add(this.pass);
-	vPanel.add(label);	
-	vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-	vPanel.add(btn1);
-	vPanel.add(this.loginStatus);
-	//btn1.addClickHandler(new BtnClickHandler());
+		vPanel.setStyleName("style");
+		
+		// create all components used on the page
+		Image img = new Image("/images/login.jpg");
+		Label un = new Label("Username : ");
+		this.uname = new TextBox();
+		Label pword = new Label("Password  : ");
+		this.pass = new PasswordTextBox();
+		HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
+		Button btn1 = new Button("Log ind");
+		this.loginStatus = new Label("LUDER");
+		btn1.addClickHandler(new BtnClickHandler());
+		   
+		
+		//sets the size of the elements
+		uname.setPixelSize(207, 24);
+		this.pass.setPixelSize(207, 24);
+		btn1.setPixelSize(100, 30);
+		
+		// insert the different things on the website
+		vPanel.add(img);
+		vPanel.add(un);
+		vPanel.add(this.uname);
+		vPanel.add(pword);
+		vPanel.add(this.pass);
+		vPanel.add(label);	
+		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		vPanel.add(btn1);
+		vPanel.add(this.loginStatus);
+		//btn1.addClickHandler(new BtnClickHandler());
 
 	}
 

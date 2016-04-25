@@ -32,7 +32,6 @@ public class PersonServiceImpl extends RemoteServiceServlet implements PersonSer
 	
 	@Override
 	public Person getOperatoer(int id) {
-		
 		for (Person opr : oprList){
 			if(opr.getOprId() == id){
 				return opr;
