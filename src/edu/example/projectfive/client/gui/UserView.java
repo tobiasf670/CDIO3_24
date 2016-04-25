@@ -41,7 +41,7 @@ public class UserView extends Composite{
 
 			@Override
 			public void onFailure(Throwable caught) {
-				un.setText("FUCKING PLEB SHIT");
+				un.setText("FAILURE!!! FAILURE!!!!!");
 			}
 
 			@Override

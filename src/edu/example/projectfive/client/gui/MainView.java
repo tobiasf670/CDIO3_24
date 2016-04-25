@@ -101,7 +101,7 @@ private class BtnClickHandler implements ClickHandler{
 					loginStatus.setText("Morten din noob");
 					if (result.getOprId() == id){
 						if (result.getPassword().equals(password)){
-							loginStatus.setText("JUUUUHUUU DU ER IKKE EN PLEB");
+							loginStatus.setText("LOGGED IN PROPERLY!");
 							RootPanel.get().add(new UserView(clientImpl));
 						}
 					}
