@@ -40,6 +40,12 @@ public class PersonServiceImpl extends RemoteServiceServlet implements PersonSer
 		return null;
 	}
 
+	@Override
+	public Person[] getOperatoers() {
+		Person[] oprs = new Person[oprList.size()];
+		oprList.toArray(oprs);
+		return oprs;
+	}
 }
 
 

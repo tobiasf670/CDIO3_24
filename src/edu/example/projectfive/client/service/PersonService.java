@@ -9,4 +9,5 @@ import edu.example.projectfive.client.model.Person;
 @RemoteServiceRelativePath("personservice")
 public interface PersonService extends RemoteService {
 	public Person getOperatoer (int id);
+	public Person[] getOperatoers ();
 }

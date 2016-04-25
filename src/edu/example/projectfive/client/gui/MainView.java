@@ -33,6 +33,7 @@ public class MainView extends Composite {
 	
 	
 	public MainView(PersonServiceClientImpl clientImpl ){
+
 		this.clientImpl = clientImpl;
 		HTML label1 = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n  ").toSafeHtml());
 		this.vPanel.add(label1);
@@ -101,8 +102,8 @@ private class BtnClickHandler implements ClickHandler{
 					if (result.getOprId() == id){
 						if (result.getPassword().equals(password)){
 							loginStatus.setText("JUUUUHUUU DU ER IKKE EN PLEB");
+							RootPanel.get().add(new UserView(clientImpl));
 						}
-					
 					}
 					
 				}
