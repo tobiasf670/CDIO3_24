@@ -1,0 +1,2 @@
+serviceClass: edu.example.projectfive.client.service.PersonService
+path: 4E32D024E73BB7CE978531F2FF795638.gwt.rpc
