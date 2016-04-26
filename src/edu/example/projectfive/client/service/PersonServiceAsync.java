@@ -13,5 +13,6 @@ public interface PersonServiceAsync {
 	void getOperatoer(int id, AsyncCallback<Person> callback);
 	void getOperatoers(AsyncCallback<Person[]> callback);
 	void getPersons(AsyncCallback<List<Person>> callback);
+	void savePerson(Person p, AsyncCallback<Void> callback);
 	
 }

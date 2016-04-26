@@ -30,7 +30,7 @@ public class MenuView extends Composite {
 		vPanel.add(add);
 		add.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-			//	main.addPerson();
+				mainView.addPerson();
 			}
 		});
 		

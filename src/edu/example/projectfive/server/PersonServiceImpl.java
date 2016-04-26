@@ -65,6 +65,12 @@ public class PersonServiceImpl extends RemoteServiceServlet implements PersonSer
 		// TODO Auto-generated method stub
 		return oprList;
 	}
+
+	@Override
+	public void savePerson(Person p) {
+		// TODO Auto-generated method stub
+		oprList.add(p);
+	}
 }
 
 

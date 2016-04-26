@@ -41,7 +41,7 @@ public class MainView  {
 	
 	public void run() {
 		// show welcome panel
-		contentView.openUserView();		
+		contentView.openBrowseView();
 	}
 	
 	

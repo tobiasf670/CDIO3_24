@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.example.projectfive.client.service.PersonServiceClientImpl;
@@ -24,6 +25,9 @@ public class BrowseView extends Composite {
 
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
+		Label l1 = new Label("Personer i Systemet");
+		l1.setStyleName("label");
+		browsePanel.add(l1);
 
 		final FlexTable t = new FlexTable();
 		t.getFlexCellFormatter().setWidth(0, 0, "50px");

@@ -38,7 +38,10 @@ public class ContentView extends Composite {
 
 	public void openAddView() {
 		// TODO Auto-generated method stub
-		
+		contentPanel.clear();
+		AddView AV = new AddView (clientImpl);
+		contentPanel.add(AV);
+		contentPanel.setStyleName("style");
 	}
 
 	public void openBrowseView() {

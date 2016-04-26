@@ -61,6 +61,7 @@ nav {
 	width: 100px;
 	float: left;
 	padding: 5px;
+	
 }
 
 section {
@@ -99,3 +100,31 @@ header {
 	font-weight: bold;
 	border-bottom: thin solid #444444;
 }
+
+.label {
+	font-size: large;
+	font-weight: bold;
+	text-align: center;
+	color: red;
+	
+}
+.LinkColor {
+	color: white;
+}
+
+.gwt-Anchor:link {color:#FF0000;}
+.gwt-Anchor:visited {color:#00FF00;}
+.gwt-Anchor:hover {color:#ffffff;}
+.gwt-Anchor:active {color:#0000FF;}
+
+/* dependant style for text boxes */
+.gwt-TextBox-invalidEntry {
+	border-color: red;
+}
+
+/* used for all GWT labels */
+.gwt-Label {
+	font-size: 10pt;
+}
+
+
