@@ -1,126 +1,65 @@
 package edu.example.projectfive.client.gui;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
-
-import edu.example.projectfive.client.model.Person;
 import edu.example.projectfive.client.service.PersonServiceClientImpl;
-import edu.example.projectfive.server.PersonServiceImpl;
 
 
-
-public class MainView extends Composite {
-	private PersonServiceClientImpl clientImpl ;
+public class MainView  {
+	
+	// reference to ContentView
+	private ContentView contentView;
+	
+	// V.1
+	// reference to data layer
+	// private IPersonDAO iPersonDAO;
+	
+	// V.2
+	// reference to remote data layer
 	
 	
-	private VerticalPanel vPanel = new VerticalPanel ();
-	private TextBox uname;
-	private PasswordTextBox pass;
-	private Label loginStatus;
 	
-	
-	public MainView(PersonServiceClientImpl clientImpl ){
-
-		this.clientImpl = clientImpl;
-		HTML label1 = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n  ").toSafeHtml());
-		this.vPanel.add(label1);
-		initWidget(this.vPanel);
+	public MainView(PersonServiceClientImpl clientImpl) {
 		
-		vPanel.setStyleName("style");
+		// V.1
+		// add implementation of data layer
+		// iPersonDAO = new PersonDAO();
 		
-		// create all components used on the page
-		Image img = new Image("/images/login.jpg");
-		Label un = new Label("Username : ");
-		this.uname = new TextBox();
-		Label pword = new Label("Password  : ");
-		this.pass = new PasswordTextBox();
-		HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
-		Button btn1 = new Button("Log ind");
-		this.loginStatus = new Label("LUDER");
-		btn1.addClickHandler(new BtnClickHandler());
-		   
+		// V.2
+		// add server side implementation of data layer
+		clientImpl = new PersonServiceClientImpl(GWT.getModuleBaseURL() + "personservice");
 		
-		//sets the size of the elements
-		uname.setPixelSize(207, 24);
-		this.pass.setPixelSize(207, 24);
-		btn1.setPixelSize(100, 30);
+		// wrap menuView
+		MenuView m = new MenuView(this);
+		RootPanel.get("nav").add(m);
 		
-		// insert the different things on the website
-		vPanel.add(img);
-		vPanel.add(un);
-		vPanel.add(this.uname);
-		vPanel.add(pword);
-		vPanel.add(this.pass);
-		vPanel.add(label);	
-		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		vPanel.add(btn1);
-		vPanel.add(this.loginStatus);
-		//btn1.addClickHandler(new BtnClickHandler());
-
+		// wrap contentView
+		contentView = new ContentView(clientImpl);
+		RootPanel.get("section").add(contentView);	
 	}
-
-
-private class BtnClickHandler implements ClickHandler{
-	private String username , password;
-	private int id ;
-	@Override
-	public void onClick(ClickEvent event) {
-		
-		username = uname.getText();
-		 password = pass.getText();
-		 
-		
-			 id = Integer.parseInt(username);
-			 loginStatus.setText(id+"");
-			clientImpl.service.getOperatoer(id, new AsyncCallback<Person>(){
-				
-			
-				@Override
-				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					loginStatus.setText("FEJL! " + caught.getMessage());
-					
-				}
-
-				@Override
-				public void onSuccess(Person result) {
-					// TODO Auto-generated method stub
-					loginStatus.setText("Morten din noob");
-					if (result.getOprId() == id){
-						if (result.getPassword().equals(password)){
-							loginStatus.setText("LOGGED IN PROPERLY!");
-							RootPanel.get().add(new UserView(clientImpl));
-						}
-					}
-					
-				}
-
-				
-		
-	});
+	
+	public void run() {
+		// show welcome panel
+		contentView.openUserView();		
+	}
+	
+	
+	// Call back handlers
+	public void addPerson() {
+		contentView.openAddView();
+	}
+	
+	public void showPersons() {
+		contentView.openBrowseView();
+	}
+	
+	public void editPersons() {
+		contentView.openEditView();
+	}
+	
+	public void deletePersons() {
+		contentView.openDeleteView();
+	}
 	
 }
-	
-
-}
-public void setLuder(){
-	loginStatus.setText("Du er en fed luder");
-}
-}
-	
-
-
-
