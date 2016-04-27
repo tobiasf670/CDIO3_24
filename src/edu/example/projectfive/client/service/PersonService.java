@@ -14,4 +14,5 @@ public interface PersonService extends RemoteService {
 	public Person[] getOperatoers ();
 	public List <Person> getPersons();
 	public void savePerson(Person p);
+	void updatePerson(Person person);
 }

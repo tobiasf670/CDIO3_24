@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -42,7 +43,7 @@ public class AddView extends Composite {
 	TextBox cprTxt;
 	PasswordTextBox passwordTxt;
 	
-	Button save = new Button("Tilf\u00F8j");
+	Button save ;
 
 	// valid fields
 	boolean nameValid = false;
@@ -50,6 +51,7 @@ public class AddView extends Composite {
 	boolean iniVaild = false;
 	boolean cprVaild = false;
 	boolean passwordVaild = false;
+	boolean RadioButton = false;
 
 	public AddView(final PersonServiceClientImpl clientImpl) {
 
@@ -61,12 +63,18 @@ public class AddView extends Composite {
 		initWidget(this.addPanel);
 
 		HorizontalPanel namePanel = new HorizontalPanel();
+		namePanel.setStyleName("styleHP");
 		HorizontalPanel oprIDPanel = new HorizontalPanel();
+		oprIDPanel.setStyleName("styleLabel");
 		HorizontalPanel iniPanel = new HorizontalPanel();
+		iniPanel.setStyleName("styleLabel");
 		HorizontalPanel cprPanel = new HorizontalPanel();
+		cprPanel.setStyleName("styleLabel");
 		HorizontalPanel passwordPanel = new HorizontalPanel();
+		passwordPanel.setStyleName("styleLabel");
 		//FlowPanel RBpanel = new FlowPanel();
 		HorizontalPanel RBpanel = new HorizontalPanel();
+		RBpanel.setStyleName("styleLabel");
 
 		nameLbl = new Label("Navn:");
 		nameLbl.setWidth("80px");
@@ -76,7 +84,7 @@ public class AddView extends Composite {
 		namePanel.add(nameTxt);
 
 
-		oprIDLbl = new Label("oprID :");
+		oprIDLbl = new Label("OprID :");
 		oprIDLbl.setWidth("80px");
 		oprIDTxt = new TextBox();
 		oprIDTxt.setHeight("1em");
@@ -90,7 +98,7 @@ public class AddView extends Composite {
 		iniPanel.add(iniLbl);
 		iniPanel.add(iniTxt);
 		
-		cprLbl = new Label("cpr:");
+		cprLbl = new Label("CPR:");
 		cprLbl.setWidth("80px");
 		cprTxt = new TextBox();
 		cprTxt.setHeight("1em");
@@ -98,9 +106,10 @@ public class AddView extends Composite {
 		cprPanel.add(cprTxt);
 
 		
-		passwordLbl = new Label("password:");
+		passwordLbl = new Label("Password:");
 		passwordLbl.setWidth("80px");
 		passwordTxt = new PasswordTextBox();
+		passwordTxt.setPixelSize(176, 13);
 		passwordTxt.setHeight("1em");
 		passwordPanel.add(passwordLbl);
 		passwordPanel.add(passwordTxt);
@@ -110,10 +119,13 @@ public class AddView extends Composite {
 		farmaceutRB = new RadioButton("rolle", "Farmaceut");
 		Label l = new Label ("Rolle :");
 		l.setWidth("80px");
+		l.setStyleName("styleTest");
 		RBpanel.add(l);
 		RBpanel.add(adminRB);
 		RBpanel.add(OperatoerRB);
 		RBpanel.add(farmaceutRB);
+		
+	
 		
 		// use unicode escape sequence \u00F8 for 'ø'
 		save = new Button("Tilf\u00F8j");
@@ -175,7 +187,7 @@ public class AddView extends Composite {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				if (!FieldVerifier.isValidOprId(Integer.parseInt(oprIDTxt.getText()))) {
+				if (!FieldVerifier.isValidOprId(oprIDTxt.getText())) {
 					oprIDTxt.setStyleName("gwt-TextBox-invalidEntry");
 					oprIDVaild = false;
 				}
@@ -240,6 +252,9 @@ public class AddView extends Composite {
 
 		});
 		
+		adminRB.addClickHandler(new RBClickHandler ());
+		OperatoerRB.addClickHandler(new RBClickHandler ());
+		farmaceutRB.addClickHandler(new RBClickHandler ());
 		addPanel.add(namePanel);
 		addPanel.add(oprIDPanel);
 		addPanel.add(iniPanel);
@@ -247,16 +262,30 @@ public class AddView extends Composite {
 		addPanel.add(passwordPanel);
 		addPanel.add(RBpanel);
 		addPanel.add(save);
+		//addPanel.setCellHorizontalAlignment(save, HasHorizontalAlignment.ALIGN_CENTER);
 
 
 	}
 
 	private void checkFormValid() {
-		if (nameValid && oprIDVaild && iniVaild && cprVaild && passwordVaild )
+		if (nameValid && oprIDVaild && iniVaild && cprVaild && passwordVaild && RadioButton )
 			save.setEnabled(true);
 		else
 			save.setEnabled(false);
 
+	}
+	
+	private class RBClickHandler implements ClickHandler{
+
+		@Override
+		public void onClick(ClickEvent event) {
+			// TODO Auto-generated method stub
+			if( adminRB.getValue()|| OperatoerRB.getValue() || farmaceutRB.getValue()){
+				RadioButton = true; 
+				checkFormValid();
+			}
+		}
+		
 	}
 
 }

@@ -38,7 +38,7 @@ public class MenuView extends Composite {
 		vPanel.add(edit);
 		edit.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-			//	main.editPersons();
+			mainView.editPersons();
 			}
 		});
 		

@@ -43,13 +43,12 @@ public class FieldVerifier {
 		return name.length() <= 30;
 	}
 	
-	public static boolean isValidOprId(int id){
-		if (id < 0){
-			return false;
-		}
-		else return true;
+	public static boolean isValidOprId(String id){
+		if (id.matches ("\\d")|| id.matches ("\\d\\d") ) {
+            return true ;
+        }
+		else return false ;
 	}
-	
 	public static boolean isValidIni(String Ini){
 		if (Ini.length() == 2){
 			return true;
@@ -58,10 +57,23 @@ public class FieldVerifier {
 	}
 	
 	public static boolean isValidCpr (String cpr){
-		if (cpr.length() == 10){
-			return true;
+		String subs1 = cpr.substring(0, 6);
+		String subs2 = cpr.substring(7, 11);
+		String subs3 = cpr.substring(6,7);
+		
+		if(cpr.length()>11){
+			return false;
 		}
-		else return false;
+		if(!subs1.matches("\\d\\d\\d\\d\\d\\d")){
+			return false;
+		}
+		if (!subs2.matches("\\d\\d\\d\\d")){
+			return false;
+		}
+		if (!subs3.matches("\\W")){
+			return false;
+		}
+		return true;
 	}
 	
 	public static boolean isVaildPassword (String password){
@@ -71,10 +83,10 @@ public class FieldVerifier {
 		else  return true;
 	}
 	
-	public static boolean isValidAge(String age) {
-		if (age.matches("[0-9]+"))
+	public static boolean isValidRolle(String rolle) {
+		if (rolle.equals("true") || rolle.equals("false"))
 			// max 100 år
-			return Integer.parseInt(age) < 100 ? true : false;
+			return true;
 		else
 			return false;	
 	}

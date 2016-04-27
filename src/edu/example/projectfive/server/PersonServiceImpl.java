@@ -71,6 +71,15 @@ public class PersonServiceImpl extends RemoteServiceServlet implements PersonSer
 		// TODO Auto-generated method stub
 		oprList.add(p);
 	}
+
+	@Override
+	public void updatePerson(Person p)  {
+		// find object with id and update it
+		for (int i=0; i<oprList.size();i++)
+			if (oprList.get(i).getOprId() == p.getOprId())	
+				oprList.set(i, p);
+
+	}
 }
 
 

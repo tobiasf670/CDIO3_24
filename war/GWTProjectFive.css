@@ -47,6 +47,7 @@ button.gwt-Button {
 	font-weight: normal;
 	color: white;
 	background: blue;
+	
 }
 
 .style {
@@ -91,8 +92,9 @@ header {
 	border-left: thin solid #444444;
 	border-right: thin solid #111111;
 	border-bottom: thin solid #111111;
-	table-layout: fixed;
-	width: 400px; 
+	table-layout: auto;
+	width: 600px; 
+	margin-top: 7mm;
 	
 }
 
@@ -127,4 +129,21 @@ header {
 	font-size: 10pt;
 }
 
+.styleHP {
+	margin-top: 1cm;
+	margin-bottom: 3mm;
+}
 
+.styleLabel {
+	margin-top : 3mm;
+	margin-bottom:  3mm;
+}
+
+.styleTest{
+	margin-bottom: 7mm;
+}
+
+
+.styleLowercase{
+	text-transform: lowercase;
+}

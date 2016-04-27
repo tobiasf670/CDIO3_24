@@ -55,7 +55,10 @@ public class ContentView extends Composite {
 
 	public void openEditView() {
 		// TODO Auto-generated method stub
-		
+		contentPanel.clear();
+		EditView EV = new EditView(clientImpl);
+		contentPanel.add(EV);
+		contentPanel.setStyleName("style");
 	}
 
 	public void openDeleteView() {
