@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class MenuView extends Composite {
 	private VerticalPanel vPanel = new VerticalPanel();
+	
 //	private MainView main;
 	// receive reference to MainView for call back
 	public MenuView(final MainView mainView) {
@@ -49,5 +50,20 @@ public class MenuView extends Composite {
 			}
 		});
 		vPanel.add(delete);
+	
+	
+	Anchor logOut = new Anchor("Log Ud");
+	vPanel.add(logOut);
+	// call back the controller
+	logOut.addClickHandler(new ClickHandler(){
+		public void onClick(ClickEvent event){	
+		mainView.logOut();
+		}
+	});
+	
+	
+}
+	public VerticalPanel getVpanel(){
+		return vPanel;
 	}
 }

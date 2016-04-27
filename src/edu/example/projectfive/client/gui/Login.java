@@ -47,9 +47,10 @@ public class Login extends Composite {
 		this.uname = new TextBox();
 		Label pword = new Label("Password  : ");
 		this.pass = new PasswordTextBox();
-		HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
+		//HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
 		Button btn1 = new Button("Log ind");
-		this.loginStatus = new Label("Test");
+		this.loginStatus = new Label("LoginStatus");
+		loginStatus.setStyleName("loginError");
 		btn1.addClickHandler(new BtnClickHandler());
 		   
 		
@@ -64,10 +65,11 @@ public class Login extends Composite {
 		vPanel.add(this.uname);
 		vPanel.add(pword);
 		vPanel.add(this.pass);
-		vPanel.add(label);	
+		//vPanel.add(label);	
 		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		vPanel.add(btn1);
 		vPanel.add(this.loginStatus);
+		vPanel.add(btn1);
+		//vPanel.add(this.loginStatus);
 		
 		//btn1.addClickHandler(new BtnClickHandler());
 
@@ -85,7 +87,7 @@ private class BtnClickHandler implements ClickHandler{
 		 
 		
 			 id = Integer.parseInt(username);
-			 loginStatus.setText(id+"");
+			 
 			clientImpl.service.getOperatoer(id, new AsyncCallback<Person>(){
 				
 			
@@ -99,20 +101,32 @@ private class BtnClickHandler implements ClickHandler{
 				@Override
 				public void onSuccess(Person result) {
 					// TODO Auto-generated method stub
-					loginStatus.setText("Morten din noob");
+					
 					if (result.getOprId() == id){
 						if (result.getPassword().equals(password)){
-							loginStatus.setText("LOGGED IN PROPERLY!");
+							if (result.isAdmin()){
 							RootPanel.get("section").clear();
 							new MainView(clientImpl).run();
 							
-						}
+						} else if (result.isOperatoer()){
+							loginStatus.setText("Du er en Operatoer !");
+						} else if (result.isFarmaceut()){
+							loginStatus.setText("Du er en Farmaceut !");
+						} 
+								
+							} else{
+								loginStatus.setText("Wrong login! Try again");
+							}
+						
 					}
+						
+					else {loginStatus.setText("Wrong login ! Try again");}	
 					
 				}
 
+					
 				
-		
+				
 	});
 	
 }

@@ -10,6 +10,7 @@ public class MainView  {
 	
 	// reference to ContentView
 	private ContentView contentView;
+	private MenuView m;
 	
 	// V.1
 	// reference to data layer
@@ -31,7 +32,7 @@ public class MainView  {
 		clientImpl = new PersonServiceClientImpl(GWT.getModuleBaseURL() + "personservice");
 		
 		// wrap menuView
-		MenuView m = new MenuView(this);
+		 m = new MenuView(this);
 		RootPanel.get("nav").add(m);
 		
 		// wrap contentView
@@ -60,6 +61,11 @@ public class MainView  {
 	
 	public void deletePersons() {
 		contentView.openDeleteView();
+	}
+	
+	public void logOut(){
+		m.getVpanel().clear();
+		contentView.openLogOutView();
 	}
 	
 }

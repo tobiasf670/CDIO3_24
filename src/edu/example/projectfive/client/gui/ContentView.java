@@ -65,6 +65,13 @@ public class ContentView extends Composite {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void openLogOutView(){
+		contentPanel.clear();
+		Login LI = new Login(clientImpl);
+		contentPanel.add(LI);
+		contentPanel.setStyleName("style");
+	}
 
 	
 

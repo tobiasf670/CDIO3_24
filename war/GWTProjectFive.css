@@ -147,3 +147,8 @@ header {
 .styleLowercase{
 	text-transform: lowercase;
 }
+.loginError {
+	margin-top: 2mm;
+	margin-bottom: 2mm;
+	color: red;
+}
