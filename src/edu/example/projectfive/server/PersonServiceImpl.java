@@ -65,6 +65,15 @@ public class PersonServiceImpl extends RemoteServiceServlet implements PersonSer
 				oprList.set(i, p);
 
 	}
+
+	@Override
+	public void deletePerson(int id) {
+		// // find object with id and remove it
+		for (int i=0; i<oprList.size();i++)
+			if (oprList.get(i).getOprId() == id)	
+				oprList.remove(i);
+		
+	}
 }
 
 

@@ -3,6 +3,7 @@ package edu.example.projectfive.client.gui;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -102,7 +103,7 @@ private class BtnClickHandler implements ClickHandler{
 				public void onSuccess(Person result) {
 					// TODO Auto-generated method stub
 					
-					if (result.getOprId() == id){
+					if (result.getOprId() == Integer.parseInt(username)){
 						if (result.getPassword().equals(password)){
 							if (result.isAdmin()){
 							RootPanel.get("section").clear();
@@ -120,7 +121,7 @@ private class BtnClickHandler implements ClickHandler{
 						
 					}
 						
-					else {loginStatus.setText("Wrong login ! Try again");}	
+						
 					
 				}
 
@@ -128,7 +129,7 @@ private class BtnClickHandler implements ClickHandler{
 				
 				
 	});
-	
+			loginStatus.setText("Wrong login! Try again");
 }
 	
 

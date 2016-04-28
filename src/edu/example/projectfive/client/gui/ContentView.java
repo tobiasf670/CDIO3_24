@@ -63,6 +63,10 @@ public class ContentView extends Composite {
 
 	public void openDeleteView() {
 		// TODO Auto-generated method stub
+		contentPanel.clear();
+		DeleteView DV = new DeleteView(clientImpl);
+		contentPanel.add(DV);
+		contentPanel.setStyleName("style");
 		
 	}
 	

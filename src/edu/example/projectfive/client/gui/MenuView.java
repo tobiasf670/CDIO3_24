@@ -46,7 +46,7 @@ public class MenuView extends Composite {
 		Anchor delete = new Anchor("Slet person");
 		delete.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event){				
-			//	main.deletePersons();
+			mainView.deletePersons();
 			}
 		});
 		vPanel.add(delete);
