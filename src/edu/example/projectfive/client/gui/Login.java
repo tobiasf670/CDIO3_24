@@ -103,7 +103,7 @@ private class BtnClickHandler implements ClickHandler{
 				public void onSuccess(Person result) {
 					// TODO Auto-generated method stub
 					
-					if (result.getOprId() == Integer.parseInt(username)){
+					if (result.getNavn().equals(username)){
 						if (result.getPassword().equals(password)){
 							if (result.isAdmin()){
 								clientImpl.setPerson(result);
