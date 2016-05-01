@@ -129,7 +129,7 @@ public class DeleteView extends Composite {
 
 					// V.2
 					// delete object with id in back end					
-					clientImpl.service.deletePerson(Integer.parseInt(t.getText(eventRowIndex, 0)), new AsyncCallback<Void>() {
+					clientImpl.service.deletePerson(Integer.parseInt(t.getText(eventRowIndex, 0)), Boolean.parseBoolean(t.getText(eventRowIndex, 4)), Boolean.parseBoolean(t.getText(eventRowIndex, 5)), Boolean.parseBoolean(t.getText(eventRowIndex, 6)), new AsyncCallback<Void>() {
 
 						@Override
 						public void onSuccess(Void result) {

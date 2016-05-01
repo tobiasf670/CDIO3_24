@@ -15,6 +15,6 @@ public interface PersonServiceAsync {
 	void getPersons(AsyncCallback<List<Person>> callback);
 	void savePerson(Person p, AsyncCallback<Void> callback);
 	void updatePerson(Person person, AsyncCallback<Void> asyncCallback);
-	void deletePerson(int id, AsyncCallback<Void> callback);
+	void deletePerson(int id, boolean admin, boolean operatoer, boolean farmaceut, AsyncCallback<Void> callback);
 	
 }

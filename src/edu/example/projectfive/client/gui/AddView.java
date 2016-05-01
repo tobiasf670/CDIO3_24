@@ -195,6 +195,10 @@ public class AddView extends Composite {
 								nameValid = true;
 							}
 						}
+						else{
+							nameTxt.setStyleName("gwt-TextBox-invalidEntry");
+							nameValid = false;
+						}
 					}
 				});
 				

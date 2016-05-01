@@ -72,22 +72,4 @@ public class UserView extends Composite{
 		//btn1.addClickHandler(new BtnClickHandler());
 		
 	}
-	
-	private class BtnClickHandler implements ClickHandler{
-		private String username , password;
-		private int id ;
-		@Override
-		public void onClick(ClickEvent event) {
-			clientImpl.service.getOperatoer(id, new AsyncCallback<Person>(){
-				@Override
-				public void onFailure(Throwable caught) {
-				}
-				@Override
-				public void onSuccess(Person result) {
-				
-				}
-			});
-		}
-	}
-	
 }
