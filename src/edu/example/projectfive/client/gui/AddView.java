@@ -3,6 +3,9 @@ package edu.example.projectfive.client.gui;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import java.util.List;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -168,15 +171,33 @@ public class AddView extends Composite {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				if (!FieldVerifier.isValidName(nameTxt.getText())) {
-					nameTxt.setStyleName("gwt-TextBox-invalidEntry");
-					nameValid = false;
-				}
-				else {
-					nameTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					nameValid = true;
-				}
+				clientImpl.service.getPersons(new AsyncCallback<List<Person>>() {
 
+					@Override
+					public void onFailure(Throwable caught) {
+					}
+
+					@Override
+					public void onSuccess(List<Person> result) {
+						boolean alreadyExists = false;
+						for(int i = 0; i < result.size(); i++){
+							if(result.get(i).getNavn().equals(nameTxt.getText())){
+								alreadyExists = true;
+							}
+						}
+						if(!alreadyExists){
+							if (!FieldVerifier.isValidName(nameTxt.getText())) {
+								nameTxt.setStyleName("gwt-TextBox-invalidEntry");
+								nameValid = false;
+							}
+							else{
+								nameTxt.removeStyleName("gwt-TextBox-invalidEntry");
+								nameValid = true;
+							}
+						}
+					}
+				});
+				
 				checkFormValid();
 			}
 

@@ -1,5 +1,7 @@
 package edu.example.projectfive.client.gui;
 
+import java.util.List;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
@@ -86,54 +88,44 @@ private class BtnClickHandler implements ClickHandler{
 		username = uname.getText();
 		 password = pass.getText();
 		 
-		
-			 id = Integer.parseInt(username);
-			 
-			clientImpl.service.getOperatoer(id, new AsyncCallback<Person>(){
-				
-			
+		 	clientImpl.service.getPersons(new AsyncCallback<List<Person>>() {
+
 				@Override
 				public void onFailure(Throwable caught) {
-					// TODO Auto-generated method stub
-					loginStatus.setText("FEJL! " + caught.getMessage());
-					
 				}
 
 				@Override
-				public void onSuccess(Person result) {
-					// TODO Auto-generated method stub
-					
-					if (result.getNavn().equals(username)){
-						if (result.getPassword().equals(password)){
-							if (result.isAdmin()){
-								clientImpl.setPerson(result);
-								RootPanel.get("section").clear();
-								new MainView(clientImpl).run();
-							
-						} else if (result.isOperatoer()){
-							loginStatus.setText("Du er en Operatoer !");
-						} else if (result.isFarmaceut()){
-							loginStatus.setText("Du er en Farmaceut !");
-						} 
-								
-							} else{
+				public void onSuccess(List<Person> result) {
+					for(int i = 0; i < result.size(); i++){
+						boolean loggedIn = false;
+						if(result.get(i).getNavn().equals(username)){
+								if (result.get(i).getPassword().equals(password)){
+									if (result.get(i).isAdmin()){
+										loggedIn = true;
+										loginStatus.setText("logged in as admin!");
+										clientImpl.setPerson(result.get(i));
+										RootPanel.get("section").clear();
+										new MainView(clientImpl).run();
+										break;
+									
+									} else if (result.get(i).isOperatoer()){
+										loggedIn = true;
+										loginStatus.setText("Du er en Operatoer !");
+										break;
+									} else if (result.get(i).isFarmaceut()){
+										loggedIn = true;
+										loginStatus.setText("Du er en Farmaceut !");
+										break;
+									} 
+								}
+							}
+							if(!loggedIn){
 								loginStatus.setText("Wrong login! Try again");
 							}
-						
+						}
 					}
-						
-						
-					
-				}
-
-					
-				
-				
-	});
-			loginStatus.setText("Wrong login! Try again");
-}
-	
-
+			});
+	}
 }
 
 }
