@@ -40,11 +40,12 @@ public class BrowseView extends Composite {
 		// set headers in flextable
 		t.setText(0, 0, "Id");
 		t.setText(0, 1, "Navn");
-		t.setText(0, 2, "Cpr");
-		t.setText(0, 3, "password");
-		t.setText(0, 4, "Admin");
-		t.setText(0, 5, "Operatoer");
-		t.setText(0, 6, "Farmaceut");
+		t.setText(0, 2, "Ini");
+		t.setText(0, 3, "Cpr");
+		t.setText(0, 4, "password");
+		t.setText(0, 5, "Admin");
+		t.setText(0, 6, "Operatoer");
+		t.setText(0, 7, "Farmaceut");
 
 		// V.1
 		//List<PersonDTO> personer = iPersonDAO.getPersons();
@@ -61,12 +62,13 @@ public class BrowseView extends Composite {
 			public void onSuccess(List<Person> result) {
 				for (int i=0; i < result.size(); i++) {
 					t.setText(i+1, 0, "" + result.get(i).getOprId());
-					t.setText(i+1, 1, result.get(i).getNavn());
-					t.setText(i+1, 2, "" + result.get(i).getCpr());
-					t.setText(i+1, 3, "" + result.get(i).getPassword());
-					t.setText(i+1, 4, "" + result.get(i).isAdmin());
-					t.setText(i+1, 5, "" + result.get(i).isOperatoer());
-					t.setText(i+1, 6, "" + result.get(i).isFarmaceut());
+					t.setText(i+1, 1, "" + result.get(i).getNavn());
+					t.setText(i+1, 2, "" + result.get(i).getIni());
+					t.setText(i+1, 3, "" + result.get(i).getCpr());
+					t.setText(i+1, 4, "" + result.get(i).getPassword());
+					t.setText(i+1, 5, "" + result.get(i).isAdmin());
+					t.setText(i+1, 6, "" + result.get(i).isOperatoer());
+					t.setText(i+1, 7, "" + result.get(i).isFarmaceut());
 				}
 
 			}
