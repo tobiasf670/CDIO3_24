@@ -106,8 +106,9 @@ private class BtnClickHandler implements ClickHandler{
 					if (result.getOprId() == Integer.parseInt(username)){
 						if (result.getPassword().equals(password)){
 							if (result.isAdmin()){
-							RootPanel.get("section").clear();
-							new MainView(clientImpl).run();
+								clientImpl.setPerson(result);
+								RootPanel.get("section").clear();
+								new MainView(clientImpl).run();
 							
 						} else if (result.isOperatoer()){
 							loginStatus.setText("Du er en Operatoer !");

@@ -29,7 +29,7 @@ public class MainView  {
 		
 		// V.2
 		// add server side implementation of data layer
-		clientImpl = new PersonServiceClientImpl(GWT.getModuleBaseURL() + "personservice");
+		//clientImpl = new PersonServiceClientImpl(GWT.getModuleBaseURL() + "personservice");
 		
 		// wrap menuView
 		 m = new MenuView(this);

@@ -28,7 +28,7 @@ public class DeleteView extends Composite {
 	// previous cancel anchor
 	Anchor previousCancel = null;
 
-	public DeleteView(PersonServiceClientImpl clientImpl) {
+	public DeleteView(final PersonServiceClientImpl clientImpl) {
 		// V.1 this.iPersonDAO = iPersonDAO;
 		// v.2
 		this.clientImpl = clientImpl;
@@ -78,17 +78,18 @@ public class DeleteView extends Composite {
 			public void onSuccess(List<Person> result) {
 				// populate table and add delete anchor to each row
 				for (int i=0; i < result.size(); i++) {
-					t.setText(i+1, 0, "" + result.get(i).getOprId());
-					t.setText(i+1, 1, result.get(i).getNavn());
-					t.setText(i+1, 2, "" + result.get(i).getCpr());
-					t.setText(i+1, 3, "" + result.get(i).getPassword());
-					t.setText(i+1, 4, "" + result.get(i).isAdmin());
-					t.setText(i+1, 5, "" + result.get(i).isOperatoer());
-					t.setText(i+1, 6, "" + result.get(i).isFarmaceut());
-					Anchor delete = new Anchor("delete");
-					t.setWidget(i+1, 7, delete);	
-					
-					delete.addClickHandler(new DeleteHandler());
+					if(result.get(i).getOprId() != clientImpl.getLoggedUser().getOprId()){
+						t.setText(i+1, 0, "" + result.get(i).getOprId());
+						t.setText(i+1, 1, "" + result.get(i).getNavn());
+						t.setText(i+1, 2, "" + result.get(i).getCpr());
+						t.setText(i+1, 3, "" + result.get(i).getPassword());
+						t.setText(i+1, 4, "" + result.get(i).isAdmin());
+						t.setText(i+1, 5, "" + result.get(i).isOperatoer());
+						t.setText(i+1, 6, "" + result.get(i).isFarmaceut());
+						Anchor delete = new Anchor("delete");
+						t.setWidget(i+1, 7, delete);
+						delete.addClickHandler(new DeleteHandler());
+					}
 				}
 
 			}
