@@ -5,7 +5,6 @@ import java.util.List;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -21,9 +20,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.example.projectfive.client.model.Person;
 import edu.example.projectfive.client.service.PersonServiceClientImpl;
-import edu.example.projectfive.server.PersonServiceImpl;
-
-
 
 public class Login extends Composite {
 	private PersonServiceClientImpl clientImpl ;
@@ -52,7 +48,7 @@ public class Login extends Composite {
 		this.pass = new PasswordTextBox();
 		//HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
 		Button btn1 = new Button("Log ind");
-		this.loginStatus = new Label("LoginStatus");
+		this.loginStatus = new Label("");
 		loginStatus.setStyleName("loginError");
 		btn1.addClickHandler(new BtnClickHandler());
 		   
@@ -81,7 +77,6 @@ public class Login extends Composite {
 
 private class BtnClickHandler implements ClickHandler{
 	private String username , password;
-	private int id ;
 	@Override
 	public void onClick(ClickEvent event) {
 		
@@ -99,25 +94,25 @@ private class BtnClickHandler implements ClickHandler{
 					for(int i = 0; i < result.size(); i++){
 						boolean loggedIn = false;
 						if(result.get(i).getNavn().equals(username)){
-								if (result.get(i).getPassword().equals(password)){
-									if (result.get(i).isAdmin()){
-										loggedIn = true;
-										loginStatus.setText("logged in as admin!");
-										clientImpl.setPerson(result.get(i));
-										RootPanel.get("section").clear();
-										new MainView(clientImpl).run();
-										break;
-									
-									} else if (result.get(i).isOperatoer()){
-										loggedIn = true;
-										loginStatus.setText("Du er en Operatoer !");
-										break;
-									} else if (result.get(i).isFarmaceut()){
-										loggedIn = true;
-										loginStatus.setText("Du er en Farmaceut !");
-										break;
-									} 
-								}
+							if (result.get(i).getPassword().equals(password)){
+								if (result.get(i).isAdmin()){
+									loggedIn = true;
+									loginStatus.setText("logged in as admin!");
+									clientImpl.setPerson(result.get(i));
+									RootPanel.get("section").clear();
+									new MainView(clientImpl).run();
+									break;
+								
+								} else if (result.get(i).isOperatoer()){
+									loggedIn = true;
+									loginStatus.setText("Du er en Operatoer !");
+									break;
+								} else if (result.get(i).isFarmaceut()){
+									loggedIn = true;
+									loginStatus.setText("Du er en Farmaceut !");
+									break;
+								} 
+							}
 							}
 							if(!loggedIn){
 								loginStatus.setText("Wrong login! Try again");

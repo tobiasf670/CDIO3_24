@@ -1,11 +1,7 @@
 package edu.example.projectfive.client.service;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
-import com.google.gwt.user.client.ui.Widget;
-
-import edu.example.projectfive.client.gui.Login;
 import edu.example.projectfive.client.model.Person;
 
 public class PersonServiceClientImpl  {

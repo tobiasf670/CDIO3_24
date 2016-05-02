@@ -1,6 +1,5 @@
 package edu.example.projectfive.client.gui;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import edu.example.projectfive.client.service.PersonServiceClientImpl;

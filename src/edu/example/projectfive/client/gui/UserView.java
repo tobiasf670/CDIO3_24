@@ -1,17 +1,12 @@
 package edu.example.projectfive.client.gui;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.example.projectfive.client.model.Person;
@@ -20,15 +15,12 @@ import edu.example.projectfive.client.service.PersonServiceClientImpl;
 
 public class UserView extends Composite{
 
-	private PersonServiceClientImpl clientImpl ;
 	private VerticalPanel vPanel = new VerticalPanel ();
 	private Button[] delete;
 	private Button[] change;
 	private Button addUser;
 	
 	public UserView(PersonServiceClientImpl clientImpl ){
-		
-		this.clientImpl = clientImpl;
 		//HTML label1 = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n  ").toSafeHtml());
 		//this.vPanel.add(label1);
 		initWidget(this.vPanel);
