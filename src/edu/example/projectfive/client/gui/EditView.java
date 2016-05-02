@@ -36,7 +36,7 @@ public class EditView extends Composite {
 	TextBox farmaceutTxt;
 
 	// valid fields - initially a field is valid
-	//boolean IDValid = true;
+	boolean IDValid = true;
 	boolean nameValid = true;
 	boolean cprValid = true;
 	boolean passwordValid = true;
@@ -80,7 +80,7 @@ public class EditView extends Composite {
 		t.getRowFormatter().addStyleName(0,"FlexTable-Header");
 
 		// set headers in flextable
-		//t.setText(0, 0, "Id");
+		t.setText(0, 0, "Id");
 		t.setText(0, 1, "Navn");
 		t.setText(0, 2, "Cpr");
 		t.setText(0, 3, "Password");
@@ -136,8 +136,8 @@ public class EditView extends Composite {
 		editPanel.add(t);
 
 		// text boxes
-		//IDText = new TextBox();
-		//IDText.setWidth("20px");
+		IDText = new TextBox();
+		IDText.setWidth("20px");
 		nameTxt = new TextBox();
 		nameTxt.setWidth("60px");
 		cprTxt = new TextBox();
@@ -169,7 +169,7 @@ public class EditView extends Composite {
 			eventRowIndex = t.getCellForEvent(event).getRowIndex();
 
 			// populate textboxes
-			//IDText.setText(t.getText(eventRowIndex, 0));
+			IDText.setText(t.getText(eventRowIndex, 0));
 			nameTxt.setText(t.getText(eventRowIndex, 1));
 			cprTxt.setText(t.getText(eventRowIndex, 2));
 			passwordTxt.setText(t.getText(eventRowIndex, 3));
@@ -301,7 +301,24 @@ public class EditView extends Composite {
 			});
 
 			
-			
+			IDText.addKeyUpHandler(new KeyUpHandler(){
+
+				@Override
+				public void onKeyUp(KeyUpEvent event) {
+					if (!FieldVerifier.isValidOprId(IDText.getText())) {
+						IDText.setStyleName("gwt-TextBox-invalidEntry");
+						IDValid = false;
+					}
+					else {
+						IDText.removeStyleName("gwt-TextBox-invalidEntry");
+						IDValid = true;
+					}
+
+					// enable/disable ok depending on form status 
+					checkFormValid();;				
+				}
+
+			});
 			
 
 			nameTxt.addKeyUpHandler(new KeyUpHandler(){
@@ -425,7 +442,7 @@ public class EditView extends Composite {
 	}
 	
 	private void checkFormValid(){
-		if (nameValid&&cprValid&&passwordValid&&adminValid&&operatoerValid&&farmaceutValid)
+		if (IDValid&&nameValid&&cprValid&&passwordValid&&adminValid&&operatoerValid&&farmaceutValid)
 			t.setWidget(eventRowIndex, 7, ok);
 		else
 			t.setText(eventRowIndex, 7, "ok");
