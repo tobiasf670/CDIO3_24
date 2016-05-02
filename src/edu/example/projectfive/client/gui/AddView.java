@@ -212,14 +212,31 @@ public class AddView extends Composite {
 
 			@Override
 			public void onKeyUp(KeyUpEvent event) {
-				if (!FieldVerifier.isValidOprId(oprIDTxt.getText())) {
-					oprIDTxt.setStyleName("gwt-TextBox-invalidEntry");
-					oprIDVaild = false;
-				}
-				else {
-					oprIDTxt.removeStyleName("gwt-TextBox-invalidEntry");
-					oprIDVaild = true;
-				}
+				clientImpl.service.getOperatoers(new AsyncCallback<Person[]>(){
+
+					@Override
+					public void onFailure(Throwable caught) {
+					}
+
+					@Override
+					public void onSuccess(Person[] result) {
+						boolean idExists = false;
+						for(int i = 0; i < result.length; i++){
+							if(result[i].getOprId() == Integer.parseInt(oprIDTxt.getText())){
+								idExists = true;
+							}
+						}
+						if(!idExists){
+							oprIDTxt.removeStyleName("gwt-TextBox-invalidEntry");
+							oprIDVaild = true;
+						}
+						else{
+							oprIDTxt.setStyleName("gwt-TextBox-invalidEntry");
+							oprIDVaild = false;
+						}
+					}
+					
+				});
 				checkFormValid();
 			}
 
