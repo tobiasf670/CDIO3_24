@@ -152,3 +152,15 @@ header {
 	margin-bottom: 2mm;
 	color: red;
 }
+
+.labelAddView{
+	margin-left: 3cm;
+	color: red;
+	font-style: oblique;
+}
+
+.labelAddView1{
+	margin-left: 28mm;
+	color: red;
+	font-style: oblique;
+}

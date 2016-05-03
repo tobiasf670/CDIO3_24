@@ -1,5 +1,7 @@
 package edu.example.projectfive.shared;
 
+import edu.example.projectfive.client.service.PersonServiceClientImpl;
+
 /**
  * <p>
  * FieldVerifier validates that the name the user enters is valid.
@@ -32,7 +34,11 @@ public class FieldVerifier {
 	 * 
 	 * @param name the name to validate
 	 * @return true if valid, false if invalid
+	 * 
 	 */
+	
+	PersonServiceClientImpl clientImpl;
+	
 	public static boolean isValidName(String name) {
 		if (name == null) {
 			return false;
