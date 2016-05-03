@@ -43,7 +43,6 @@ public class Login extends Composite {
 		
 		vPanel.setStyleName("style");
 		
-		// create all components used on the page
 		Image img = new Image("/images/login.jpg");
 		Label un = new Label("Username : ");
 		this.uname = new TextBox();
@@ -57,7 +56,6 @@ public class Login extends Composite {
 
 			@Override
 			public void onKeyDown(KeyDownEvent event) {
-				// TODO Auto-generated method stub
 				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER){
 				btn1.click();	
 				}
@@ -65,29 +63,19 @@ public class Login extends Composite {
 			}
 			
 		});
-		//HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
-		
-		   
-		
-		//sets the size of the elements
 		uname.setPixelSize(207, 24);
 		this.pass.setPixelSize(207, 24);
 		btn1.setPixelSize(100, 30);
 		
-		// insert the different things on the website
 		vPanel.add(img);
 		vPanel.add(un);
 		vPanel.add(this.uname);
 		vPanel.add(pword);
 		vPanel.add(this.pass);
 		
-		//vPanel.add(label);	
 		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		vPanel.add(this.loginStatus);
 		vPanel.add(btn1);
-		//vPanel.add(this.loginStatus);
-		
-		//btn1.addClickHandler(new BtnClickHandler());
 
 	}
 
@@ -137,11 +125,6 @@ private class BtnClickHandler implements ClickHandler{
 						}
 					}
 			});
+		}
 	}
 }
-
-}
-	
-
-
-

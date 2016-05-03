@@ -21,14 +21,11 @@ public class UserView extends Composite{
 	private Button addUser;
 	
 	public UserView(PersonServiceClientImpl clientImpl ){
-		//HTML label1 = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n  ").toSafeHtml());
-		//this.vPanel.add(label1);
 		initWidget(this.vPanel);
 		vPanel.setStyleName("style");
 		final Label un = new Label("USERS!");
 		
 		HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
-		//vPanel.add(label);	
 		clientImpl.service.getOperatoers(new AsyncCallback<Person[]>(){
 
 			@Override
@@ -57,11 +54,6 @@ public class UserView extends Composite{
 		vPanel.add(label);	
 		vPanel.add(addUser);
 		
-		// insert the different things on the website
-		
-		
 		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		//btn1.addClickHandler(new BtnClickHandler());
-		
 	}
 }

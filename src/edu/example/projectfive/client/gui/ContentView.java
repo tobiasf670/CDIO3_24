@@ -8,12 +8,8 @@ import edu.example.projectfive.client.service.PersonServiceClientImpl;
 
 
 public class ContentView extends Composite {
-	
-	// reference to remote data layer
+
 	private PersonServiceClientImpl clientImpl;
-	
-	// reference to data layer
-	//IPersonDAO iPersonDAO;
 
 	VerticalPanel contentPanel;
 
@@ -26,8 +22,6 @@ public class ContentView extends Composite {
 		initWidget(this.contentPanel);
 	}	
 
-
-
 	// Sub views
 	public void openUserView() {
 		contentPanel.clear();
@@ -37,7 +31,6 @@ public class ContentView extends Composite {
 	}
 
 	public void openAddView() {
-		// TODO Auto-generated method stub
 		contentPanel.clear();
 		AddView AV = new AddView (clientImpl);
 		contentPanel.add(AV);
@@ -45,7 +38,6 @@ public class ContentView extends Composite {
 	}
 
 	public void openBrowseView() {
-		// TODO Auto-generated method stub
 		contentPanel.clear();
 		BrowseView BV = new BrowseView(clientImpl);
 		contentPanel.add(BV);
@@ -54,7 +46,6 @@ public class ContentView extends Composite {
 	}
 
 	public void openEditView() {
-		// TODO Auto-generated method stub
 		contentPanel.clear();
 		EditView EV = new EditView(clientImpl);
 		contentPanel.add(EV);
@@ -62,7 +53,6 @@ public class ContentView extends Composite {
 	}
 
 	public void openDeleteView() {
-		// TODO Auto-generated method stub
 		contentPanel.clear();
 		DeleteView DV = new DeleteView(clientImpl);
 		contentPanel.add(DV);
@@ -76,7 +66,4 @@ public class ContentView extends Composite {
 		contentPanel.add(LI);
 		contentPanel.setStyleName("style");
 	}
-
-	
-
 }

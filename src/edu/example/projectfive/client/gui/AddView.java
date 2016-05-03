@@ -21,11 +21,6 @@ import edu.example.projectfive.client.service.PersonServiceClientImpl;
 
 public class AddView extends Composite {
 	VerticalPanel addPanel;
-	
-
-	// V.1 reference to data layer
-	// IPersonDAO iPersonDAO;
-
 
 	// controls
 	Label nameLbl;
@@ -52,7 +47,6 @@ public class AddView extends Composite {
 	
 	Button save ;
 
-	// valid fields
 	boolean nameValid = false;
 	boolean oprIDVaild = false;
 	boolean iniVaild = false;
@@ -64,9 +58,6 @@ public class AddView extends Composite {
 
 		addPanel = new VerticalPanel();
 		
-		
-
-		// total height of widget. Components are distributed evenly
 		addPanel.setHeight("120px");	
 		initWidget(this.addPanel);
 
@@ -159,16 +150,8 @@ public class AddView extends Composite {
 
 			@Override
 			public void onClick(ClickEvent event) {
-
-				// v.1 
-				// iPersonDAO.savePerson(new PersonDTO(nameTxt.getText(), Integer.parseInt(ageTxt.getText())));
-				// Window.alert("Person gemt i kartotek");
-				
-				// V.2
-				// create new PersonDTO
 				Person newPerson = new Person(Integer.parseInt(oprIDTxt.getText()),nameTxt.getText(),iniTxt.getText(),cprTxt.getText(),passwordTxt.getText(),adminRB.getValue(),OperatoerRB.getValue(),farmaceutRB.getValue());
 
-				// save on server
 				clientImpl.service.savePerson(newPerson, new AsyncCallback<Void>() {
 
 					@Override

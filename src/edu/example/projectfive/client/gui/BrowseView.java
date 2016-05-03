@@ -17,11 +17,7 @@ import edu.example.projectfive.client.model.*;
 public class BrowseView extends Composite {
 	VerticalPanel browsePanel;
 
-	// reference to data layer
-	// IPersonDAO iPersonDAO;
-
 	public BrowseView(PersonServiceClientImpl clientImpl) {
-		//	this.iPersonDAO = iPersonDAO;
 
 		browsePanel = new VerticalPanel();
 		initWidget(this.browsePanel);
@@ -47,10 +43,6 @@ public class BrowseView extends Composite {
 		t.setText(0, 6, "Operatoer");
 		t.setText(0, 7, "Farmaceut");
 
-		// V.1
-		//List<PersonDTO> personer = iPersonDAO.getPersons();
-
-		// V.2
 		clientImpl.service.getPersons(new AsyncCallback<List<Person>>() {
 
 			@Override

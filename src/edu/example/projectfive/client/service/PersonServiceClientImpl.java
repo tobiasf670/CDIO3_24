@@ -13,8 +13,6 @@ public class PersonServiceClientImpl  {
 		this.service = GWT.create(PersonService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;
 		endpoint.setServiceEntryPoint(url);
-		
-		//this.maingui = new MainView(this);
 	}
 	
 	public void setPerson(Person p){
@@ -24,10 +22,4 @@ public class PersonServiceClientImpl  {
 	public Person getLoggedUser(){
 		return loggedIn;
 	}
-
-//	public MainView getMainGUI() {
-	
-	//	return this.maingui;
-	//	}
-	}
-
+}
