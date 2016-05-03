@@ -33,6 +33,14 @@ public class AddView extends Composite {
 	Label iniLbl;
 	Label cprLbl;
 	Label passwordLbl;
+	
+	Label failNameLbl;
+	Label failOprIDLbl;
+	Label failIniLbl;
+	Label failCprLbl;
+	Label failPasswordLbl;
+	Label failRolle;
+	
 	RadioButton adminRB;
 	RadioButton OperatoerRB;
 	RadioButton farmaceutRB;
@@ -80,39 +88,53 @@ public class AddView extends Composite {
 		nameLbl.setWidth("80px");
 		nameTxt = new TextBox();
 		nameTxt.setHeight("1em");
+		failNameLbl = new Label("");
+		failNameLbl.setStyleName("labelAddView");
 		namePanel.add(nameLbl);
 		namePanel.add(nameTxt);
+		namePanel.add(failNameLbl);
 
 
 		oprIDLbl = new Label("OprID :");
 		oprIDLbl.setWidth("80px");
 		oprIDTxt = new TextBox();
 		oprIDTxt.setHeight("1em");
+		failOprIDLbl = new Label("");
+		failOprIDLbl.setStyleName("labelAddView");
 		oprIDPanel.add(oprIDLbl);
 		oprIDPanel.add(oprIDTxt);
+		oprIDPanel.add(failOprIDLbl);
 		
 		iniLbl = new Label("Ini:");
 		iniLbl.setWidth("80px");
 		iniTxt = new TextBox();
 		iniTxt.setHeight("1em");
+		failIniLbl = new Label("");
+		failIniLbl.setStyleName("labelAddView");
 		iniPanel.add(iniLbl);
 		iniPanel.add(iniTxt);
+		iniPanel.add(failIniLbl);
 		
 		cprLbl = new Label("CPR:");
 		cprLbl.setWidth("80px");
 		cprTxt = new TextBox();
 		cprTxt.setHeight("1em");
+		failCprLbl = new Label("");
+		failCprLbl.setStyleName("labelAddView");
 		cprPanel.add(cprLbl);
 		cprPanel.add(cprTxt);
-
+		cprPanel.add(failCprLbl);
 		
 		passwordLbl = new Label("Password:");
 		passwordLbl.setWidth("80px");
 		passwordTxt = new PasswordTextBox();
 		passwordTxt.setPixelSize(176, 13);
 		passwordTxt.setHeight("1em");
+		failPasswordLbl = new Label("");
+		failPasswordLbl.setStyleName("labelAddView1");
 		passwordPanel.add(passwordLbl);
 		passwordPanel.add(passwordTxt);
+		passwordPanel.add(failPasswordLbl);
 		
 		adminRB = new RadioButton("rolle", "Admin");
 		OperatoerRB = new RadioButton("rolle", "Operatoer");
@@ -120,10 +142,12 @@ public class AddView extends Composite {
 		Label l = new Label ("Rolle :");
 		l.setWidth("80px");
 		l.setStyleName("styleTest");
+		failRolle = new Label("");
 		RBpanel.add(l);
 		RBpanel.add(adminRB);
 		RBpanel.add(OperatoerRB);
 		RBpanel.add(farmaceutRB);
+		RBpanel.add(failRolle);
 		
 	
 		
@@ -184,21 +208,25 @@ public class AddView extends Composite {
 						for(int i = 0; i < result.size(); i++){
 							if(result.get(i).getNavn().equals(nameTxt.getText())){
 								alreadyExists = true;
+								failNameLbl.setText("");
 							}
 						}
 						if(!alreadyExists){
 							if (!FieldVerifier.isValidName(nameTxt.getText())) {
 								nameTxt.setStyleName("gwt-TextBox-invalidEntry");
 								nameValid = false;
+								failNameLbl.setText("D\u00E5rligt navn!");
 							}
 							else{
 								nameTxt.removeStyleName("gwt-TextBox-invalidEntry");
 								nameValid = true;
+								failNameLbl.setText("");
 							}
 						}
 						else{
 							nameTxt.setStyleName("gwt-TextBox-invalidEntry");
 							nameValid = false;
+							failNameLbl.setText("D\u00E5rligt navn!");
 						}
 					}
 				});
@@ -222,19 +250,30 @@ public class AddView extends Composite {
 					@Override
 					public void onSuccess(Person[] result) {
 						boolean idExists = false;
-						for(int i = 0; i < result.length; i++){
-							if(result[i].getOprId() == Integer.parseInt(oprIDTxt.getText())){
-								idExists = true;
+						try{
+							Integer.parseInt(oprIDTxt.getText());
+							for(int i = 0; i < result.length; i++){
+								if(result[i].getOprId() == Integer.parseInt(oprIDTxt.getText())){
+									idExists = true;
+									
+								}
 							}
-						}
-						if(!idExists){
-							oprIDTxt.removeStyleName("gwt-TextBox-invalidEntry");
-							oprIDVaild = true;
-						}
-						else{
+							if(!idExists){
+								oprIDTxt.removeStyleName("gwt-TextBox-invalidEntry");
+								oprIDVaild = true;
+								failOprIDLbl.setText("");
+							}
+							else{
+								oprIDTxt.setStyleName("gwt-TextBox-invalidEntry");
+								oprIDVaild = false;
+								failOprIDLbl.setText("Optaget id!");
+							}
+						} catch(NumberFormatException e){
 							oprIDTxt.setStyleName("gwt-TextBox-invalidEntry");
 							oprIDVaild = false;
+							failOprIDLbl.setText("Optaget id!");
 						}
+						
 					}
 					
 				});
@@ -251,10 +290,12 @@ public class AddView extends Composite {
 				if (!FieldVerifier.isValidIni(iniTxt.getText())) {
 					iniTxt.setStyleName("gwt-TextBox-invalidEntry");
 					iniVaild = false;
+					failIniLbl.setText("D\u00E5rligt ini, max 2 bogstaver!");
 				}
 				else {
 					iniTxt.removeStyleName("gwt-TextBox-invalidEntry");
 					iniVaild = true;
+					failIniLbl.setText("");
 				}
 				checkFormValid();
 			}
@@ -268,10 +309,12 @@ public class AddView extends Composite {
 				if (!FieldVerifier.isValidCpr(cprTxt.getText())) {
 					cprTxt.setStyleName("gwt-TextBox-invalidEntry");
 					cprVaild = false;
+					failCprLbl.setText("D\u00E5rligt cpr skriv i formen xxxxxx-xxxx!");
 				}
 				else {
 					cprTxt.removeStyleName("gwt-TextBox-invalidEntry");
 					cprVaild = true;
+					failCprLbl.setText("");
 				}
 				checkFormValid();
 			}
@@ -285,10 +328,12 @@ public class AddView extends Composite {
 				if (!FieldVerifier.isVaildPassword(passwordTxt.getText())) {
 					passwordTxt.setStyleName("gwt-TextBox-invalidEntry");
 					passwordVaild = false;
+					failPasswordLbl.setText("D\u00E5rligt password!");
 				}
 				else {
 					passwordTxt.removeStyleName("gwt-TextBox-invalidEntry");
 					passwordVaild = true;
+					failPasswordLbl.setText("");
 				}
 				checkFormValid();
 			}

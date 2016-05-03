@@ -8,6 +8,7 @@ public class PersonServiceClientImpl  {
 		
 	public PersonServiceAsync service;
 	private Person loggedIn;
+	
 	public PersonServiceClientImpl(String url){
 		this.service = GWT.create(PersonService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) this.service;

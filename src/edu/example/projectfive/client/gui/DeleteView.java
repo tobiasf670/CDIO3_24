@@ -67,6 +67,7 @@ public class DeleteView extends Composite {
 		
 
 		// V.2
+	
 		clientImpl.service.getPersons(new AsyncCallback<List<Person>>() {
 
 			@Override
@@ -133,7 +134,11 @@ public class DeleteView extends Composite {
 
 						@Override
 						public void onSuccess(Void result) {
-
+							deletePanel.clear();
+							DeleteView DV = new DeleteView(clientImpl);
+							deletePanel.add(DV);
+							
+							
 						}
 
 						@Override
