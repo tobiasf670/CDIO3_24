@@ -21,6 +21,7 @@ import edu.example.projectfive.client.service.PersonServiceClientImpl;
 
 public class AddView extends Composite {
 	VerticalPanel addPanel;
+	
 
 	// V.1 reference to data layer
 	// IPersonDAO iPersonDAO;
@@ -54,6 +55,7 @@ public class AddView extends Composite {
 	public AddView(final PersonServiceClientImpl clientImpl) {
 
 		addPanel = new VerticalPanel();
+		
 		
 
 		// total height of widget. Components are distributed evenly
@@ -148,6 +150,10 @@ public class AddView extends Composite {
 					@Override
 					public void onSuccess(Void result) {
 						Window.alert("Personen er nu gemt");
+						addPanel.clear();
+						BrowseView BW = new BrowseView(clientImpl);
+						addPanel.add(BW);
+									
 					}
 
 
