@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -46,11 +49,24 @@ public class Login extends Composite {
 		this.uname = new TextBox();
 		Label pword = new Label("Password  : ");
 		this.pass = new PasswordTextBox();
-		//HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
-		Button btn1 = new Button("Log ind");
+		final Button btn1 = new Button("Log ind");
 		this.loginStatus = new Label("");
 		loginStatus.setStyleName("loginError");
 		btn1.addClickHandler(new BtnClickHandler());
+		pass.addKeyDownHandler(new KeyDownHandler(){
+
+			@Override
+			public void onKeyDown(KeyDownEvent event) {
+				// TODO Auto-generated method stub
+				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER){
+				btn1.click();	
+				}
+				
+			}
+			
+		});
+		//HTML label = new HTML(new SafeHtmlBuilder().appendEscapedLines("\n").toSafeHtml());
+		
 		   
 		
 		//sets the size of the elements
@@ -64,6 +80,7 @@ public class Login extends Composite {
 		vPanel.add(this.uname);
 		vPanel.add(pword);
 		vPanel.add(this.pass);
+		
 		//vPanel.add(label);	
 		vPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		vPanel.add(this.loginStatus);
